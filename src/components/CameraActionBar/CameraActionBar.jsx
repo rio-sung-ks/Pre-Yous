@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import HomeButtonIcon from '../../assets/svg/HomeBtn.svg';
+import ShotButtonIcon from '../../assets/svg/ShotBtn.svg';
 import StickerIcon from '../../assets/svg/smile.svg';
 import GalleryIcon from '../../assets/svg/gallery.svg';
 import { useCameraStore } from '../../store/useCameraStore';
@@ -57,7 +57,7 @@ export default function CameraActionBar({
         onPress={onTakePhoto}
         style={styles.captureBtnPressed}
       >
-        <HomeButtonIcon
+        <ShotButtonIcon
           width={CAPTURE_INNER_D}
           height={CAPTURE_INNER_D}
         />
