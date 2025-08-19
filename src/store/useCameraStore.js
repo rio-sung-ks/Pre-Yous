@@ -1,5 +1,11 @@
 import { CameraRoll } from '@react-native-camera-roll/camera-roll';
 import { create } from 'zustand';
+import {
+  request,
+  openSettings,
+  PERMISSIONS,
+  check,
+} from 'react-native-permissions';
 
 export const useCameraStore = create((set) => ({
   cameraPermission: null,
@@ -9,6 +15,7 @@ export const useCameraStore = create((set) => ({
   placedStickers: [],
   isOverlaySwitchOn: true,
   showSlider: false,
+  photoPermissionStatus: null,
 
   setCameraRef: (ref) => set({ cameraRef: ref }),
   setCameraPermission: (status) => set({ cameraPermission: status }),
@@ -34,4 +41,19 @@ export const useCameraStore = create((set) => ({
       console.error(`읽기 권한이 존재하지 않습니다(세부 에러사항:${err})`);
     }
   },
+
+  // photo 훅에서 가져옴
+  refresh: async () => {
+    const state = await check(PERMISSIONS.IOS.PHOTO_LIBRARY);
+    set({ photoPermissionStatus: state });
+    return state;
+  },
+
+  requestGalleryPermissions: async () => {
+    const state = await request(PERMISSIONS.IOS.PHOTO_LIBRARY);
+    set({ photoPermissionStatus: state });
+    return state;
+  },
+
+  openAppSettings: () => openSettings(),
 }));

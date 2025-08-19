@@ -26,16 +26,16 @@ import CameraToolBar from '../components/CameraToolBar/CameraToolBar';
 import GalleryScreen from './GalleryScreen';
 import DraggableSticker from '../components/sticker/DraggableSticker';
 import * as Svg from '../assets/svg';
-import { usePhotoPermission } from '../hooks/usePermissions';
+// import { usePhotoPermission } from '../hooks/usePermissions';
 import { binaryImageProcessor } from '../utils/overlay/binaryImageProcessor';
 import OverlaySwitch from '../components/overlay/overlaySwitch';
 import CustomOpacitySlider from '../components/sticker/OpacitySlider';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-const RESET_ICON = SCREEN_WIDTH * 0.11;
-const RESET_PAD_H = SCREEN_WIDTH * 0.03;
-const RESET_PAD_V = SCREEN_HEIGHT * 0.025;
+const RESET_ICON = SCREEN_WIDTH * 0.07;
+const RESET_PAD_H = SCREEN_WIDTH * 0.05;
+const RESET_PAD_V = SCREEN_HEIGHT * 0.04;
 const STICKER_W = SCREEN_WIDTH * 0.18;
 const STICKER_H = SCREEN_HEIGHT * 0.065;
 
@@ -48,10 +48,6 @@ export default function CameraPreview() {
   const webViewRef = useRef(null);
   const bottomSheetHeight = useRef(new Animated.Value(0)).current;
 
-  const cameraPermission = useCameraStore((state) => state.cameraPermission);
-  const setCameraPermission = useCameraStore(
-    (state) => state.setCameraPermission,
-  );
   const placedStickers = useCameraStore((state) => state.placedStickers);
   const setPlacedStickers = useCameraStore((state) => state.setPlacedStickers);
   const showSlider = useCameraStore((state) => state.showSlider);
@@ -63,11 +59,23 @@ export default function CameraPreview() {
   const setThumbnailUri = useCameraStore((state) => state.setThumbnailUri);
   const getLatestPhoto = useCameraStore((state) => state.getLatestPhoto);
   const { isOverlaySwitchOn } = useCameraStore.getState();
+  const photoPermissionStatus = useCameraStore(
+    (state) => state.photoPermissionStatus,
+  );
+  const requestGalleryPermissions = useCameraStore(
+    (state) => state.requestGalleryPermissions,
+  );
+  const openAppSettings = useCameraStore((state) => state.openAppSettings);
+  const refresh = useCameraStore((state) => state.refresh);
 
   const backCamera = useCameraDevice('back');
   const frontCamera = useCameraDevice('front');
-  const { photoPermissionStatus, requestGalleryPermissions, openAppSettings } =
-    usePhotoPermission();
+  // const { photoPermissionStatus, requestGalleryPermissions, openAppSettings } =
+  //   usePhotoPermission();
+  const cameraPermission = useCameraStore((state) => state.cameraPermission);
+  const setCameraPermission = useCameraStore(
+    (state) => state.setCameraPermission,
+  );
   const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
   const initialCameraMode = backCamera || frontCamera;
   const stickerList = [

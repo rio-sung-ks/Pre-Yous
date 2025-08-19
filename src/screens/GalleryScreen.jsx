@@ -1,17 +1,26 @@
-import { CameraRoll } from "@react-native-camera-roll/camera-roll";
-import { useEffect, useState } from "react";
-import { Alert, Dimensions, FlatList, Modal, SafeAreaView, StyleSheet, TouchableOpacity, View } from "react-native";
-import { Image, Text } from "react-native";
-import MoveToCameraIcon from "../assets/svg/cancel.svg";
-import BackIcon from "../assets/svg/back.svg";
-import DeletePhotoIcon from "../assets/svg/trash.svg";
-import { useCameraStore } from "../store/useCameraStore";
+import { CameraRoll } from '@react-native-camera-roll/camera-roll';
+import { useEffect, useState } from 'react';
+import {
+  Alert,
+  Dimensions,
+  FlatList,
+  Modal,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { Image, Text } from 'react-native';
+import MoveToCameraIcon from '../assets/svg/cancel.svg';
+import BackIcon from '../assets/svg/back.svg';
+import DeletePhotoIcon from '../assets/svg/trash.svg';
+import { useCameraStore } from '../store/useCameraStore';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 const numColumns = 3;
 const ICON_SIZE = SCREEN_WIDTH * 0.12;
-const ICON_WRAPPER_W = SCREEN_WIDTH * 0.18;
+const ICON_WRAPPER_W = SCREEN_WIDTH * 0.13;
 const ICON_WRAPPER_H = SCREEN_HEIGHT * 0.06;
 const FONT_SCALE_TITLE = SCREEN_WIDTH * 0.045;
 const MARGIN_TOP_IMAGE = SCREEN_HEIGHT * 0.03;
@@ -27,7 +36,7 @@ export default function GalleryScreen({ visible, onClose }) {
     try {
       const albumPhotos = await CameraRoll.getPhotos({
         first: 100,
-        assetType: "Photos",
+        assetType: 'Photos',
       });
       const images = albumPhotos.edges.map((edge) => edge.node.image);
       setPhotos(images);
@@ -39,13 +48,13 @@ export default function GalleryScreen({ visible, onClose }) {
   const handleDelete = async () => {
     try {
       await CameraRoll.deletePhotos([selectedUri]);
-      Alert.alert("삭제 완료", "사진이 삭제되었습니다.");
+      Alert.alert('삭제 완료', '사진이 삭제되었습니다.');
       setSelectedUri(null);
       setIsSingleView(false);
       bringPhotos();
       await getLatestPhoto();
     } catch (err) {
-      console.error("삭제 실패:", err);
+      console.error('삭제 실패:', err);
     }
   };
 
@@ -57,8 +66,11 @@ export default function GalleryScreen({ visible, onClose }) {
   }, [visible]);
 
   return (
-    <Modal visible={visible} animationType="slide">
-      <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+    <Modal
+      visible={visible}
+      animationType='slide'
+    >
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
         {isSingleView ? (
           <View style={{ flex: 1 }}>
             <Image
@@ -70,10 +82,23 @@ export default function GalleryScreen({ visible, onClose }) {
                 onPress={() => setIsSingleView(false)}
                 style={styles.backButton}
               >
-                <View style={styles.iconPosition}><BackIcon width={50} height={50} /></View>
+                <View style={styles.iconPosition}>
+                  <BackIcon
+                    width={40}
+                    height={40}
+                  />
+                </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={handleDelete} style={styles.deleteButton}>
-                <View style={styles.iconPosition}><DeletePhotoIcon width={50} height={50} /></View>
+              <TouchableOpacity
+                onPress={handleDelete}
+                style={styles.deleteButton}
+              >
+                <View style={styles.iconPosition}>
+                  <DeletePhotoIcon
+                    width={40}
+                    height={40}
+                  />
+                </View>
               </TouchableOpacity>
             </View>
           </View>
@@ -91,7 +116,10 @@ export default function GalleryScreen({ visible, onClose }) {
                     setIsSingleView(true);
                   }}
                 >
-                  <Image source={{ uri: item.uri }} style={styles.image} />
+                  <Image
+                    source={{ uri: item.uri }}
+                    style={styles.image}
+                  />
                 </TouchableOpacity>
               )}
             />
@@ -101,8 +129,16 @@ export default function GalleryScreen({ visible, onClose }) {
 
       {!isSingleView && (
         <SafeAreaView>
-          <TouchableOpacity onPress={onClose} style={styles.closeBtn}>
-            <View style={styles.iconPosition}><MoveToCameraIcon width={50} height={50} /></View>
+          <TouchableOpacity
+            onPress={onClose}
+            style={styles.closeBtn}
+          >
+            <View style={styles.iconPosition}>
+              <MoveToCameraIcon
+                width={50}
+                height={50}
+              />
+            </View>
           </TouchableOpacity>
         </SafeAreaView>
       )}
@@ -118,29 +154,29 @@ const styles = StyleSheet.create({
   },
   oneImage: {
     flex: 1,
-    resizeMode: "contain",
-    backgroundColor: "black",
+    resizeMode: 'contain',
+    backgroundColor: 'black',
     marginTop: MARGIN_TOP_IMAGE,
   },
   title: {
     fontSize: FONT_SCALE_TITLE,
-    textAlign: "center",
+    textAlign: 'center',
     padding: SCREEN_HEIGHT * 0.015,
     padding: 20,
     padding: SCREEN_WIDTH * 0.045,
   },
   closeBtn: {
-    backgroundColor: "white",
-    alignItems: "center",
+    backgroundColor: 'white',
+    alignItems: 'center',
     padding: SCREEN_HEIGHT * 0.015,
   },
   backButton: {
     padding: SCREEN_WIDTH * 0.045,
-    backgroundColor: "white",
-    alignItems: "flex-start",
+    backgroundColor: 'white',
+    alignItems: 'flex-start',
   },
   deleteButton: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     padding: SCREEN_WIDTH * 0.045,
   },
   icon: {

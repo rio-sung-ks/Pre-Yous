@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import HomeButtonIcon from '../../assets/svg/HomeBtn.svg';
+import ShotButtonIcon from '../../assets/svg/ShotBtn.svg';
 import StickerIcon from '../../assets/svg/smile.svg';
 import GalleryIcon from '../../assets/svg/gallery.svg';
 import { useCameraStore } from '../../store/useCameraStore';
@@ -15,7 +15,7 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 const H_PADDING = SCREEN_WIDTH * 0.09;
 const V_PADDING = SCREEN_HEIGHT * 0.045;
-const ICON_WRAPPER_W = SCREEN_WIDTH * 0.18;
+const ICON_WRAPPER_W = SCREEN_WIDTH * 0.14;
 const ICON_WRAPPER_H = SCREEN_HEIGHT * 0.065;
 const ICON_SIZE = SCREEN_WIDTH * 0.12;
 const CAPTURE_OUTER_D = SCREEN_WIDTH * 0.17;
@@ -57,7 +57,7 @@ export default function CameraActionBar({
         onPress={onTakePhoto}
         style={styles.captureBtnPressed}
       >
-        <HomeButtonIcon
+        <ShotButtonIcon
           width={CAPTURE_INNER_D}
           height={CAPTURE_INNER_D}
         />
