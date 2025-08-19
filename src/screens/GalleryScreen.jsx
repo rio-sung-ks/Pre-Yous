@@ -84,8 +84,8 @@ export default function GalleryScreen({ visible, onClose }) {
               >
                 <View style={styles.iconPosition}>
                   <BackIcon
-                    width={50}
-                    height={50}
+                    width={40}
+                    height={40}
                   />
                 </View>
               </TouchableOpacity>
@@ -95,8 +95,8 @@ export default function GalleryScreen({ visible, onClose }) {
               >
                 <View style={styles.iconPosition}>
                   <DeletePhotoIcon
-                    width={50}
-                    height={50}
+                    width={40}
+                    height={40}
                   />
                 </View>
               </TouchableOpacity>
