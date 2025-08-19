@@ -26,7 +26,7 @@ import CameraToolBar from '../components/CameraToolBar/CameraToolBar';
 import GalleryScreen from './GalleryScreen';
 import DraggableSticker from '../components/sticker/DraggableSticker';
 import * as Svg from '../assets/svg';
-import { usePhotoPermission } from '../hooks/usePermissions';
+// import { usePhotoPermission } from '../hooks/usePermissions';
 import { binaryImageProcessor } from '../utils/overlay/binaryImageProcessor';
 import OverlaySwitch from '../components/overlay/overlaySwitch';
 import CustomOpacitySlider from '../components/sticker/OpacitySlider';
@@ -59,11 +59,19 @@ export default function CameraPreview() {
   const setThumbnailUri = useCameraStore((state) => state.setThumbnailUri);
   const getLatestPhoto = useCameraStore((state) => state.getLatestPhoto);
   const { isOverlaySwitchOn } = useCameraStore.getState();
+  const photoPermissionStatus = useCameraStore(
+    (state) => state.photoPermissionStatus,
+  );
+  const requestGalleryPermissions = useCameraStore(
+    (state) => state.requestGalleryPermissions,
+  );
+  const openAppSettings = useCameraStore((state) => state.openAppSettings);
+  const refresh = useCameraStore((state) => state.refresh);
 
   const backCamera = useCameraDevice('back');
   const frontCamera = useCameraDevice('front');
-  const { photoPermissionStatus, requestGalleryPermissions, openAppSettings } =
-    usePhotoPermission();
+  // const { photoPermissionStatus, requestGalleryPermissions, openAppSettings } =
+  //   usePhotoPermission();
   const cameraPermission = useCameraStore((state) => state.cameraPermission);
   const setCameraPermission = useCameraStore(
     (state) => state.setCameraPermission,
