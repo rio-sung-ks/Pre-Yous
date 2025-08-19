@@ -15,11 +15,11 @@ import { useCameraStore } from '../../store/useCameraStore';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-const H_PADDING = SCREEN_WIDTH * 0.06;
+const H_PADDING = SCREEN_WIDTH * 0.08;
 const V_PADDING = SCREEN_HEIGHT * 0.02;
-const WRAPPER_W = SCREEN_WIDTH * 0.18;
-const WRAPPER_H = SCREEN_HEIGHT * 0.065;
-const ICON_SIZE = SCREEN_WIDTH * 0.12;
+const WRAPPER_W = SCREEN_WIDTH * 0.14;
+const WRAPPER_H = SCREEN_WIDTH * 0.14;
+const ICON_SIZE = SCREEN_WIDTH * 0.1;
 
 export default function CameraHeader({ flash, onToggleFlash }) {
   const backCamera = useCameraDevice('back');
@@ -84,7 +84,8 @@ const styles = StyleSheet.create({
     width: WRAPPER_W,
     height: WRAPPER_H,
     borderRadius: WRAPPER_W / 2,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#f0f0f0ff',
+    // backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -33,9 +33,9 @@ import CustomOpacitySlider from '../components/sticker/OpacitySlider';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-const RESET_ICON = SCREEN_WIDTH * 0.11;
-const RESET_PAD_H = SCREEN_WIDTH * 0.03;
-const RESET_PAD_V = SCREEN_HEIGHT * 0.025;
+const RESET_ICON = SCREEN_WIDTH * 0.07;
+const RESET_PAD_H = SCREEN_WIDTH * 0.05;
+const RESET_PAD_V = SCREEN_HEIGHT * 0.04;
 const STICKER_W = SCREEN_WIDTH * 0.18;
 const STICKER_H = SCREEN_HEIGHT * 0.065;
 
