@@ -48,10 +48,6 @@ export default function CameraPreview() {
   const webViewRef = useRef(null);
   const bottomSheetHeight = useRef(new Animated.Value(0)).current;
 
-  const cameraPermission = useCameraStore((state) => state.cameraPermission);
-  const setCameraPermission = useCameraStore(
-    (state) => state.setCameraPermission,
-  );
   const placedStickers = useCameraStore((state) => state.placedStickers);
   const setPlacedStickers = useCameraStore((state) => state.setPlacedStickers);
   const showSlider = useCameraStore((state) => state.showSlider);
@@ -68,6 +64,10 @@ export default function CameraPreview() {
   const frontCamera = useCameraDevice('front');
   const { photoPermissionStatus, requestGalleryPermissions, openAppSettings } =
     usePhotoPermission();
+  const cameraPermission = useCameraStore((state) => state.cameraPermission);
+  const setCameraPermission = useCameraStore(
+    (state) => state.setCameraPermission,
+  );
   const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false);
   const initialCameraMode = backCamera || frontCamera;
   const stickerList = [
